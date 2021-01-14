@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    tools:context=".MainActivity">
+
+   <LinearLayout
+       android:id="@+id/LinearLayout"
+       android:layout_centerVertical="true"
+       android:orientation="vertical"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+
+       <TextView
+           android:text="Username"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"/>
+
+       <EditText
+           android:id="@+id/editTextUsername"
+           android:hint="Enter username"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"/>
+
+       <TextView
+           android:text="Password"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"/>
+
+       <EditText
+           android:id="@+id/editTextPassword"
+           android:inputType="textPersonName"
+           android:hint="Enter username"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"/>
+
+       <TextView
+           android:text="Email"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"/>
+
+       <EditText
+           android:id="@+id/editTextEmail"
+           android:inputType="textEmailAddress"
+           android:hint="Enter Email"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"/>
+       <Button
+           android:text="Register User"
+           android:id="@+id/buttonregister"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"/>
+
+   </LinearLayout>
+
+    <TextView
+        android:layout_below="@+id/LinearLayout"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textAlignment="center"
+        android:text="Already Registered? \n Click Here to Login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</RelativeLayout>

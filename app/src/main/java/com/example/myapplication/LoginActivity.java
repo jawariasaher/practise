@@ -77,11 +77,7 @@ public class LoginActivity extends AppCompatActivity {
                                                 obj.getString("username"),
                                                 obj.getString("email")
                                         );
-                                Toast.makeText(
-                                        getApplicationContext(),
-                                       "User login successful",
-                                        Toast.LENGTH_LONG
-                                ).show();
+                                Toast.makeText(LoginActivity.this,  "User login successful", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                                 finish();
                             } else {
@@ -102,7 +98,7 @@ public class LoginActivity extends AppCompatActivity {
                         progressDialog.dismiss();
 
                         Toast.makeText(
-                                getApplicationContext(),
+                                LoginActivity.this,
                                 error.getMessage(),
                                 Toast.LENGTH_LONG
                         ).show();

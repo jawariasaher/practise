@@ -60,6 +60,7 @@
    </LinearLayout>
 
     <TextView
+        android:id="@+id/textViewLogin"
         android:layout_below="@+id/LinearLayout"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textAlignment="center"

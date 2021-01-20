@@ -23,9 +23,9 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends AppCompatActivity {
 
-    private EditText editTextUsername,  editTextPassword;
+    private EditText editTextUsername, editTextPassword;
     private Button buttonLogin;
     private ProgressDialog progressDialog;
 
@@ -34,7 +34,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        if(SharedPreManager.getInstance(this).isLoggedIn()){
+        if (SharedPreManager.getInstance(this).isLoggedIn()) {
             finish();
             startActivity(new Intent(this, ProfileActivity.class));
             return;
@@ -43,15 +43,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
         buttonLogin = (Button) findViewById(R.id.buttonlogin);
 
-        progressDialog =new ProgressDialog(this);
+        progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please wait...");
 
-        buttonLogin.setOnClickListener(this);
+        buttonLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                userLogin();
+            }
+        });
     }
 
-    private  void userLogin(){
-        final  String username = editTextUsername.getText().toString().trim();
-        final  String password = editTextPassword.getText().toString().trim();
+    private void userLogin() {
+        final String username = editTextUsername.getText().toString().trim();
+        final String password = editTextPassword.getText().toString().trim();
 
         progressDialog.show();
 
@@ -62,25 +67,24 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     @Override
                     public void onResponse(String response) {
 
-
                         try {
                             progressDialog.dismiss();
                             JSONObject obj = new JSONObject(response);
-                            if(!obj.getBoolean("error")){
-                              SharedPreManager.getInstance(getApplicationContext())
-                              .userLogin(
-                                      obj.getInt("id"),
-                                      obj.getString("username"),
-                                      obj.getString("email")
-                              );
-//                                Toast.makeText(
-//                                        getApplicationContext(),
-//                                       "User login successful",
-//                                        Toast.LENGTH_LONG
-//                                ).show();
+                            if (!obj.getBoolean("error")) {
+                                SharedPreManager.getInstance(getApplicationContext())
+                                        .userLogin(
+                                                obj.getInt("id"),
+                                                obj.getString("username"),
+                                                obj.getString("email")
+                                        );
+                                Toast.makeText(
+                                        getApplicationContext(),
+                                       "User login successful",
+                                        Toast.LENGTH_LONG
+                                ).show();
                                 startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                                 finish();
-                            }else {
+                            } else {
                                 Toast.makeText(
                                         getApplicationContext(),
                                         obj.getString("message"),
@@ -92,10 +96,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         }
                     }
                 },
-                new Response.ErrorListener(){
+                new Response.ErrorListener() {
                     @Override
-                 public void  onErrorResponse(VolleyError error){
-                    progressDialog.dismiss();
+                    public void onErrorResponse(VolleyError error) {
+                        progressDialog.dismiss();
 
                         Toast.makeText(
                                 getApplicationContext(),
@@ -104,11 +108,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         ).show();
                     }
                 }
-        ){
+        ) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("usermame", username);
+                params.put("email", username);
                 params.put("password", password);
                 return params;
             }
@@ -118,11 +122,4 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
-
-    @Override
-    public void onClick(View v) {
-        if(v == buttonLogin){
-            userLogin();
-        }
-    }
 }

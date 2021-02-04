@@ -44,12 +44,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return;
         }
 
-        editTextEmail = (EditText) findViewById(R.id.editTextEmail);
-        editTextUsername = (EditText) findViewById(R.id.editTextUsername);
-        editTextPassword = (EditText) findViewById(R.id.editTextPassword);
+        editTextEmail = (EditText) findViewById(R.id.email);
+        editTextUsername = (EditText) findViewById(R.id.username);
+        editTextPassword = (EditText) findViewById(R.id.password);
 
-        textViewLogin = (TextView) findViewById(R.id.textViewLogin);
-        buttonRegister = (Button) findViewById(R.id.buttonregister);
+        textViewLogin = (TextView) findViewById(R.id.login);
+        buttonRegister = findViewById(R.id.register);
 
         progressDialog = new ProgressDialog (this);
 
